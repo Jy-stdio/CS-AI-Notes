@@ -252,4 +252,77 @@ Teacher MrZhu(MrYang);//用MrYang对象作为构造函数的参数创建新对�
 
 拷贝构造函数是默认生成的，某些特殊情况下，特别是类当中有指针类型的成员变量的时候，以拷贝内存方式实现的默认拷贝构造函数只能复制指针成员变量的值，而不能复制指针所指向的内容，这样，**新旧两个对象中不同的两个指针却指向了相同的内容**，这显然是不合理的，此时就要定义拷贝构造函数。
 
-实现代码见：
+实现代码见：[定义自己的拷贝构造函数](https://github.com/Jy-stdio/CS-AI-Notes/blob/main/hello_c%2B%2B/%E7%AC%AC%E5%85%AD%E7%AB%A0/code/%E5%AE%9A%E4%B9%89%E8%87%AA%E5%B7%B1%E7%9A%84%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0.cpp)
+
+------
+
+##### 操作符重载
+
+在功能上，重载操作符等同于类的成员函数，但是用重载操作符可以让语句更加简洁。声明重载操作符的语法格式如下：
+
+```c++
+class 类名
+{
+    public:
+         返回值类型 operator 操作符 (参数列表)
+         {
+         // 操作符的具体运算过程
+         }
+};
+```
+
+举个例子：
+
+要想让“father + mother”得到 baby 对象，只需要定义 Father 类的“+”操作符函数（因为 father位于操作符之前，所以我们定义 father 所属的 Father 类的操作符），使其可以接受一个 Mother 类的对象作为参数，并返回一个 Baby 类的对象就可以了：
+
+```c++
+// 母亲类
+class Mother
+{
+// 省略具体定义
+};
+
+
+// 孩子类
+class Baby
+{
+    public:
+        // 孩子类的构造函数
+        Baby(string strName): m_strName(strName)
+        {}
+    private:
+    	string m_strName;     // 孩子的名字
+};
+
+
+// 父亲类
+class Father
+{
+    public:
+        // 重载操作符“+”，返回值为 Baby 类型，参数为 Mother 类型
+        Baby operator + (const Mother& mom)
+        {
+            // 创建一个 Baby 对象并返回，省略创建过程…
+            return Baby("MiaoMiao");
+     }
+};   
+
+
+Father father;Mother mother;     
+Baby baby = father + mother;
+```
+
+------
+
+#### 类成员的访问控制
+
+对类成员的访问控制是通过设置成员的访问级别来实现的。按照访问范围的大小，访问级别被分为公有类型（public）、保护类型（protected）和私有类型（private）三种。
+
+访问级别如下图所示：
+
+![image-20211128165550700](https://i.loli.net/2021/11/28/mjeuBMnQ1JwhLIf.png)
+
+注意：保护类型可以让其派生类也拥有其中的成员，实现对其的访问。
+
+> 如果对象的某些成员变量因为业务逻辑的需要允许外界访问，也建议采用提供**公有接口**的方法，让外界通过公有接口来访问这些成员变量，而不是直接把这些成员变量设置为公有类型。**一般情况下，类的成员变量都应该设置为保护或私有类型。**
+
