@@ -2,8 +2,6 @@
 
 [TOC]
 
-
-
 # 第二章  与C++第一次亲密接触
 
 ## main函数
@@ -55,7 +53,7 @@ C++标准库提供了 ifstream（input file stream） 和 ofstream（output file
 
 代码：
 
-+ [读写文件实现](https://github.com/Jy-stdio/CS-AI-Notes/blob/main/hello_c%2B%2B/%E7%AC%AC%E4%B8%80%E7%AB%A0code/%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6.cpp)
++ [读写文件实现](https://github.com/Jy-stdio/CS-AI-Notes/blob/main/hello_c%2B%2B/%E7%AC%AC%E4%BA%8C%E7%AB%A0~%E7%AC%AC%E4%BA%94%E7%AB%A0/code/%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6.cpp)
 
 
 
@@ -173,14 +171,15 @@ return a + b;
 
 经过函数重载，编译器会根据实际调用函数时不同的参数类型和个数调用与之匹配的重载函数，这样虽然我们在代码形式上调用的都是同一个函数，可实际最终调用的却是重载函数的不同版本。
 
-代码例子：
+代码例子：[重载add求和函数](https://github.com/Jy-stdio/CS-AI-Notes/blob/main/hello_c%2B%2B/%E7%AC%AC%E4%BA%8C%E7%AB%A0~%E7%AC%AC%E4%BA%94%E7%AB%A0/code/%E9%87%8D%E8%BD%BD%E5%87%BD%E6%95%B0.cpp)
 
 结果：
 
-int Add( int a, int b )被调用！
+> int Add( int a, int b )被调用！
+>
+> 2 + 3 = 5
+>
+> double Add( double a, double b )被调用！
+>
+> 2.5 + 10.3 = 12.8
 
-2 + 3 = 5
-
-double Add( double a, double b )被调用！
-
-2.5 + 10.3 = 12.8
